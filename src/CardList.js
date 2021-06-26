@@ -1,57 +1,47 @@
 import { Component } from "react";
 import Card from "./Card";
+
 class CardList extends Component {
     constructor({ timecards }) {
-        super({ timecards })
-        this.initialCards = timecards.map(timecard => (
-            <Card
-                name={timecard.name}
-                total_time_logged={timecard.total_time_logged}
-                id={timecard.id}
-            />
-
-        ))
+        super({ timecards });
         this.state = {
-            cardsArray: this.initialCards,
-            content: <div>
-                {this.initialCards}
-                <div><button class="add_new_card" onClick={() => this.handleAddNewCardClick()}>+</button></div>
-            </div >,
-            new_entry_name: ""
+            timecards: timecards,
+            newEntry: ""
         }
-    };
+    }
+
+    handleDeleteClick(index) {
+        const newTimecards = [...this.state.timecards];
+        newTimecards.splice(index, 1);
+        this.setState({ timecards: newTimecards });
+    }
     handleInput = event => {
         this.setState({ new_entry_name: event.target.value });
     }
 
     addNewCard() {
-        var newCardsArray = this.state.cardsArray.concat(<Card name={this.state.new_entry_name} total_time_logged={0} id={this.state.cardsArray.length + 1} />);
-        this.setState({
-            cardsArray: newCardsArray,
-            content: < div >
-                {newCardsArray}
-                < div > <button class="add_new_card" onClick={() => this.handleAddNewCardClick()}>+</button></div >
-            </div >,
-        });
-
+        const newTimecards = this.state.timecards.concat({ "name": this.state.new_entry_name, "totalTime": 0, "id": this.state.timecards.length + 1 });
+        this.setState({ timecards: newTimecards });
     }
-    handleAddNewCardClick() {
-        // var name = prompt("Enter the name for the task.", "New Task");
-        this.setState({
-            content: <div>
-                {this.state.cardsArray}
+
+    render() {
+        return (
+            <div>
+                <div>
+                    {this.state.timecards.map((timecard, index) => (<Card
+                        name={timecard.name}
+                        totalTime={timecard.totalTime}
+                        id={timecard.id}
+                        bgcolor={timecard.bgcolor}
+                        onDelete={() => this.handleDeleteClick(index)}
+                    />))}
+                </div >
                 <div className="bg-light-green dib br3 pa3 ma2 grow">
                     <input id="addNewCard" type="text" onChange={this.handleInput} />
                     <button class="add_button" onClick={() => this.addNewCard()}>Add</button>
                 </div>
-            </div>
-        });
-
-        //this.cardsArray.add(<Card name=<input type="text">Name:</input> total_time_logged = 0 id = { this.cardsArray[-1].id + 1 } />)
-    };
-
-    render() {
-        return this.state.content;
+            </div >
+        )
     }
 };
 

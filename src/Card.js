@@ -49,11 +49,11 @@ class Control extends Component {
 
 
 class Card extends Component {
-
     constructor(props) {
         super(props);
-        this.props = this.props;
-        this.state = { timer: props.total_time_logged, paused: true };
+        this.props = props;
+        this.state = { timer: props.totalTime, paused: true };
+
     };
 
     tick = () => {
@@ -77,17 +77,16 @@ class Card extends Component {
 
     render() {
         return (
-            <div className="bg-light-green dib br3 pa3 ma2 grow">
-                <h1>{this.props.name}</h1>
+            <div className={`${this.props.bgcolor} dib br3 pa3 ma2 grow`}>
+                < h1 > {this.props.name}</h1 >
                 <TimeDisplay time={this.state.timer} />
                 <Control
                     paused={this.state.paused}
                     start={this.startTimer}
                     stop={this.stopTimer}
                 />
-
                 <Reset onClickReset={this.reset} />
-                <button onClick={this.props.deleteButtonHandler}>Delete</button>
+                <button onClick={this.props.onDelete}>Delete</button>
             </div >
         );
     };
