@@ -2,7 +2,7 @@
 
 Welcome to my first ever React app!
 
-This app is meant to help implement the ideas by @deviparikh mentioned in her [Medium article](https://blog.usejournal.com/calendar-in-stead-of-to-do-lists-9ada86a512dd) to create "data" about your habits/routine/calendar. When that is done, there will also be a page where one can see their statistics and places where they can improve.
+This app is meant to help implement the ideas by [@deviparikh](https://github.com/deviparikh) mentioned in her [Medium article](https://blog.usejournal.com/calendar-in-stead-of-to-do-lists-9ada86a512dd) to create "data" about your habits/routine/calendar. When that is done, there will also be a page where one can see their statistics and places where they can improve.
 
 A long-term goal of this app is to create a calendar (hopefully similar to Google) which allows people to `play/pause/stop` their tasks and at the same time see them extend or reduce in size, and have a shadow of their expected timing in the background. The `Gallery View` of tasks will also be kept as an option, among other views.
 
